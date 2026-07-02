@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Business Consulting | Priority Activator Consulting</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800and family=Inter:wght@400;500;600and family=Outfit:wght@700;800and display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --orange: #EB5733;
+    --orange-dark: #d44a27;
+    --orange-light: #fff3ee;
+    --orange-dim: rgba(235,87,51,0.08);
+    --black: #111111;
+    --dark: #1a1a1a;
+    --gray: #706F6F;
+    --light: #F7F5F3;
+    --white: #ffffff;
+    --font-display: 'Barlow Condensed', sans-serif;
+    --font-body: 'Inter', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-body);
+    color: var(--black);
+    background: var(--white);
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0,0,0,0.07);
+    padding: 0 60px;
+    display: flex; justify-content: space-between; align-items: center;
+    height: 72px;
+    transition: box-shadow 0.3s;
+  }
+  .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .nav-logo svg { height: 36px; width: auto; }
+  .nav-links { display: flex; gap: 8px; align-items: center; list-style: none; }
+  .nav-links > li > a {
+    font-size: 13.5px; font-weight: 500; color: var(--dark);
+    text-decoration: none; padding: 8px 14px; border-radius: 6px;
+    transition: background 0.2s, color 0.2s; letter-spacing: 0.01em;
+  }
+  .nav-links > li > a:hover { background: var(--orange-light); color: var(--orange); }
+  .nav-cta {
+    background: var(--black); color: var(--white) !important;
+    padding: 10px 22px !important; border-radius: 6px !important;
+    font-weight: 600 !important; font-size: 13px !important;
+    letter-spacing: 0.03em !important; transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--orange) !important; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes slideInLeft { from { opacity: 0; transform: translateX(-50px); } to { opacity: 1; transform: translateX(0); } }
+  @keyframes slideInRight { from { opacity: 0; transform: translateX(50px); } to { opacity: 1; transform: translateX(0); } }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--white);
+    position: relative; overflow: hidden;
+    padding: 60px 80px 80px 80px;
+    display: grid; grid-template-columns: 1fr 380px;
+    gap: 60px; align-items: start;
+    animation: fadeInUp 0.8s ease-out;
+    min-height: auto;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(235,87,51,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(235,87,51,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 65% 50%, rgba(235,87,51,0.06) 0%, transparent 55%);
+    pointer-events: none;
+  }
+  .hero-content { position: relative; z-index: 2; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(235,87,51,0.12); border: 1px solid rgba(235,87,51,0.25);
+    color: var(--orange); font-size: 11px; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 6px 14px; border-radius: 20px; margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(36px, 4.2vw, 56px);
+    font-weight: 900; line-height: 1.0;
+    color: var(--black); letter-spacing: -0.025em;
+    margin-bottom: 18px;
+  }
+  .hero h1 span { color: var(--orange); }
+  .hero p {
+    color: var(--gray);
+    font-size: 20px; line-height: 1.7;
+    max-width: 480px; margin-bottom: 32px;
+  }
+  .hero-btns { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--orange); color: var(--white);
+    padding: 14px 30px; border-radius: 6px;
+    font-size: 13px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.06em; text-decoration: none;
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--orange-dark); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(235,87,51,0.35); }
+  .btn-ghost {
+    color: var(--gray); font-size: 13px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.06em;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+    transition: color 0.2s;
+  }
+  .btn-ghost:hover { color: var(--black); }
+
+  /* Hero right visual panel - compact */
+  .hero-visual { position: relative; z-index: 2; }
+  .metric-stack { display: flex; flex-direction: column; gap: 10px; }
+  .metric-card {
+    background: rgba(0,0,0,0.02);
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 10px; padding: 14px 18px;
+    display: flex; align-items: center; gap: 14px;
+    transition: background 0.3s, border-color 0.3s, transform 0.3s;
+  }
+  .metric-card:hover {
+    background: rgba(235,87,51,0.06);
+    border-color: rgba(235,87,51,0.2);
+    transform: translateX(4px);
+  }
+  .metric-icon {
+    width: 36px; height: 36px; flex-shrink: 0;
+    background: rgba(235,87,51,0.12); border-radius: 8px;
+    display: flex; align-items: center; justify-content: center; color: var(--orange);
+  }
+  .metric-icon svg { width: 18px; height: 18px; stroke-width: 2; }
+  .metric-info h4 { 
+    font-size: 12px; 
+    font-weight: 700; 
+    color: var(--black); 
+    margin-bottom: 1px; 
+    line-height: 1.2;
+  }
+  .metric-info p { 
+    font-size: 10.5px; 
+    color: var(--gray); 
+    line-height: 1.3; 
+    margin-bottom: 0;
+  }
+  .metric-badge {
+    margin-left: auto; flex-shrink: 0;
+    background: rgba(235,87,51,0.12); color: var(--orange);
+    font-size: 8.5px; font-weight: 700; letter-spacing: 0.06em;
+    padding: 3px 10px; border-radius: 20px; white-space: nowrap;
+  }
+
+  /* ── VALUE STRIP ── */
+  .value-strip {
+    background: var(--orange);
+    display: flex; overflow-x: auto;
+  }
+  .value-item {
+    flex: 1; min-width: 200px;
+    padding: 36px 40px;
+    border-right: 1px solid rgba(255,255,255,0.18);
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .value-item:last-child { border-right: none; }
+  .value-num { font-family: var(--font-display); font-size: 52px; font-weight: 800; color: rgba(255,255,255,0.2); line-height: 1; }
+  .value-label { font-size: 16px; font-weight: 800; color: var(--white); }
+  .value-desc { font-size: 13px; color: rgba(255,255,255,0.68); line-height: 1.5; }
+
+  /* ── SPLIT SECTION ── */
+  .split-section {
+    display: grid; grid-template-columns: 1fr 1fr;
+    margin: 60px 80px; border-radius: 16px;
+    overflow: hidden; box-shadow: 0 10px 50px rgba(0,0,0,0.08);
+  }
+  .split-left {
+    background: var(--dark); color: var(--white);
+    padding: 56px 52px;
+    animation: slideInLeft 0.8s forwards;
+  }
+  .split-right {
+    background: var(--white);
+    padding: 56px 52px;
+    animation: slideInRight 0.8s forwards;
+  }
+  .split-eyebrow {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--orange);
+    margin-bottom: 14px;
+  }
+  .split-left .split-eyebrow { color: rgba(235,87,51,0.8); }
+  .split-section h2 {
+    font-family: var(--font-display); font-size: 30px; font-weight: 800;
+    margin-bottom: 28px; text-transform: uppercase; letter-spacing: 0.01em; line-height: 1.15;
+  }
+  .split-left h2 { color: var(--white); }
+  .split-right h2 { color: var(--dark); }
+  .split-section ul { list-style: none; margin-bottom: 30px; }
+  .split-section ul li {
+    display: flex; align-items: flex-start; gap: 12px;
+    margin-bottom: 16px; font-size: 14px; line-height: 1.55;
+  }
+  .split-section ul li i { width: 18px; height: 18px; margin-top: 2px; flex-shrink: 0; }
+  .split-left ul li { color: rgba(255,255,255,0.8); }
+  .split-left ul li i { color: var(--orange); }
+  .split-right ul li { color: #444; }
+  .split-right ul li i { color: var(--orange); }
+  .split-section p { font-size: 14px; line-height: 1.7; margin-bottom: 28px; color: #555; }
+  .split-left p { color: rgba(255,255,255,0.5); }
+  .btn-solid-white {
+    display: inline-block; background: var(--white); color: var(--orange);
+    padding: 11px 28px; border-radius: 6px;
+    font-size: 12px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.06em; text-decoration: none;
+    transition: background 0.2s, box-shadow 0.2s;
+  }
+  .btn-solid-white:hover { background: var(--orange-light); box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+  .btn-outline-dark {
+    display: inline-block; border: 2px solid #333; color: #333;
+    padding: 11px 28px; border-radius: 6px;
+    font-size: 12px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.06em; text-decoration: none;
+    transition: all 0.2s;
+  }
+  .btn-outline-dark:hover { background: #333; color: var(--white); }
+
+  /* ── CAROUSEL ── */
+  .carousel-section { background: var(--light); padding: 80px; }
+  .carousel-header { margin-bottom: 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: end; }
+  .section-eyebrow {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--orange);
+    margin-bottom: 14px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-eyebrow::before { content: ''; display: block; width: 24px; height: 2px; background: var(--orange); flex-shrink: 0; }
+  .section-title {
+    font-size: clamp(28px, 3.5vw, 48px); font-weight: 900;
+    letter-spacing: -0.025em; line-height: 1.1; color: var(--dark);
+  }
+  .section-sub { font-size: 15px; color: var(--gray); line-height: 1.75; }
+
+  .carousel-container {
+    max-width: 100%; overflow: hidden; position: relative; border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.05); background: var(--white);
+  }
+  .carousel-track { display: flex; transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+  .carousel-slide {
+    min-width: 100%; padding: 40px 50px; box-sizing: border-box; display: flex; flex-direction: column;
+  }
+  .carousel-slide h3 {
+    font-family: var(--font-display); font-size: 28px; color: var(--orange); text-transform: uppercase; margin-bottom: 15px; border-bottom: 2px solid #eee; padding-bottom: 12px;
+  }
+  .carousel-slide ul { list-style: none; padding: 0; }
+  .carousel-slide ul li {
+    display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px; font-size: 15px; line-height: 1.6; color: #444;
+  }
+  .carousel-slide ul li i { width: 20px; height: 20px; color: var(--orange); flex-shrink: 0; margin-top: 2px; }
+
+  /* Carousel nav  arrows + dots only */
+  .carousel-nav {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 50px 24px;
+    background: var(--white);
+    border-top: 1px solid rgba(0,0,0,0.05);
+  }
+  .carousel-dots { display: flex; gap: 8px; }
+  .dot {
+    width: 10px; height: 10px; background: #ddd; border-radius: 50%;
+    cursor: pointer; transition: background 0.3s, transform 0.2s; border: none;
+  }
+  .dot.active { background: var(--orange); transform: scale(1.25); }
+  .carousel-arrows { display: flex; gap: 8px; }
+  .arrow-btn {
+    width: 40px; height: 40px; border-radius: 8px;
+    border: 1px solid rgba(0,0,0,0.1); background: var(--white);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; color: var(--gray); transition: all 0.2s;
+  }
+  .arrow-btn:hover { background: var(--orange); border-color: var(--orange); color: var(--white); }
+  .arrow-btn svg { width: 18px; height: 18px; stroke-width: 2.5; }
+
+  /* ── ADVANTAGES ── */
+  .adv-section { background: var(--white); padding: 80px; }
+  .adv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; margin-top: 60px; }
+  .adv-visual {
+    background: var(--dark); border-radius: 20px;
+    padding: 48px; position: relative; overflow: hidden;
+  }
+  .adv-visual::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 70% 30%, rgba(235,87,51,0.15) 0%, transparent 60%);
+  }
+  .adv-stat-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    position: relative; z-index: 1;
+  }
+  .adv-stat {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px; padding: 24px 20px;
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .adv-stat:hover { background: rgba(235,87,51,0.1); border-color: rgba(235,87,51,0.3); }
+  .adv-stat .stat-num {
+    font-family: var(--font-display); font-size: 40px; font-weight: 800;
+    color: var(--orange); line-height: 1; margin-bottom: 6px;
+  }
+  .adv-stat .stat-label { font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.5); letter-spacing: 0.04em; }
+  .adv-content h2 {
+    font-family: var(--font-display); font-size: 38px; font-weight: 800;
+    text-transform: uppercase; letter-spacing: 0.01em; margin-bottom: 14px; line-height: 1.1;
+  }
+  .adv-content p { font-size: 15px; color: var(--gray); line-height: 1.75; margin-bottom: 32px; }
+  .adv-list { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 28px; }
+  .adv-list div {
+    font-size: 13.5px; color: #333;
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 0; border-bottom: 1px solid #eaeaea;
+  }
+  .adv-list div i { width: 17px; height: 17px; color: var(--orange); flex-shrink: 0; }
+
+  /* ── INSIGHTS ── */
+  .updates-section { background: var(--light); padding: 80px; }
+  .updates-section h2 {
+    font-family: var(--font-display); font-size: 40px; font-weight: 800;
+    text-transform: uppercase; text-align: center; margin-bottom: 52px; letter-spacing: 0.01em;
+  }
+  .updates-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .update-item {
+    background: var(--white); padding: 32px 28px; border-radius: 14px;
+    border-left: 4px solid var(--orange);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .update-item:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,0.07); }
+  .update-tag {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--orange); margin-bottom: 14px; display: block;
+  }
+  .update-item h4 { font-size: 16px; font-weight: 700; color: var(--dark); margin-bottom: 10px; line-height: 1.4; }
+  .update-item p { font-size: 13px; color: var(--gray); line-height: 1.65; }
+
+  /* ── CTA BAND ── */
+  .cta-section {
+    background: var(--orange); padding: 80px;
+    display: grid; grid-template-columns: 1fr auto;
+    gap: 60px; align-items: center;
+  }
+  .cta-section h2 {
+    font-family: var(--font-display); font-size: clamp(28px, 3.5vw, 50px);
+    font-weight: 800; text-transform: uppercase; letter-spacing: 0.01em;
+    color: var(--white); margin-bottom: 12px; line-height: 1.1;
+  }
+  .cta-section p { font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.6; max-width: 520px; }
+  .btn-white {
+    background: var(--white); color: var(--orange);
+    padding: 16px 38px; border-radius: 6px;
+    font-weight: 800; font-size: 13px; text-decoration: none;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    transition: transform 0.2s, box-shadow 0.2s; white-space: nowrap;
+  }
+  .btn-white:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(0,0,0,0.2); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark); padding: 40px 80px;
+    display: flex; justify-content: space-between; align-items: center;
+    color: rgba(255,255,255,0.3); font-size: 13px; flex-wrap: wrap; gap: 16px;
+  }
+  .footer-links { display: flex; gap: 24px; }
+  .footer-links a { color: rgba(255,255,255,0.3); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--white); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1100px) {
+    .carousel-slide { grid-template-columns: 1fr; }
+    .adv-grid { grid-template-columns: 1fr; }
+    .split-section { grid-template-columns: 1fr; margin: 40px 24px; }
+    .hero { grid-template-columns: 1fr; padding: 40px 24px; }
+    .hero-visual { display: none; }
+  }
+  @media (max-width: 900px) {
+    .carousel-section { padding: 60px 24px; }
+    .carousel-header { grid-template-columns: 1fr; }
+    .carousel-slide { padding: 36px 28px; }
+    .carousel-nav { padding: 16px 28px 20px; }
+    .adv-section { padding: 60px 24px; }
+    .adv-list { grid-template-columns: 1fr; }
+    .updates-section { padding: 60px 24px; }
+    .updates-grid { grid-template-columns: 1fr; }
+    .cta-section { grid-template-columns: 1fr; padding: 48px 24px; text-align: center; }
+    footer { padding: 40px 24px; flex-direction: column; text-align: center; }
+    nav { padding: 0 20px; }
+    .value-strip { flex-direction: column; }
+    .value-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.15); }
+    .value-item:last-child { border-bottom: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <a href="index.html" class="nav-logo">
+    <svg viewBox="0 0 346.3 140.96" xmlns="http://www.w3.org/2000/svg"><defs><style>.n1{fill:#EB5733}.n2{fill:#131313}.n3{fill:#fff}</style></defs><g><path class="n1" d="M57.94,23.27c0,4.15-3.79,7.51-8.47,7.51s-8.47-3.36-8.47-7.51,3.79-7.51,8.47-7.51,8.47,3.36,8.47,7.51Z"/><path class="n1" d="M101.32,10.24l-39.52,36.82h-.62c-2.19-1.71-4.92-2.72-7.91-2.72s-5.73,1.01-7.91,2.72h-.57l-10.1-10.17h12.3l4.91,4.84,36.6-31.49h12.84Z"/><path class="n2" d="M72.58,80.88l-12.93.34-7.1-5.05-36.32,31.22H2.83l42.1-39.73h.49c2.17,1.67,4.9,2.67,7.85,2.67,2.28,0,4.41-.59,6.27-1.63l13.05,12.18Z"/><path class="n2" d="M108.41,90.3l-.16,11.87-44.15-37.72c1.33-2.04,2.11-4.48,2.11-7.11,0-2.01-.46-3.92-1.27-5.62l14.27-11.73.23,11.47-5.78,6.24,34.75,32.6Z"/><path class="n2" d="M43.05,65.31l-13.64,11.31-.28-11.48,5.75-6.25L0,26.41l.11-11.87,42.24,35.81c-1.29,2.02-2.03,4.42-2.03,6.99,0,3.01,1.02,5.77,2.72,7.97Z"/></g><g><path class="n1" d="M154.81,10.95c-.15-.01-.3-.01-.45-.01-.44,0-.87.01-1.3.02-6.93.24-13.34,2.38-18.67,5.89-1.28.84-2.49,1.76-3.64,2.75-.2.17-.41.36-.61.54-1.57,1.43-3,2.98-4.27,4.66-4.09,5.4-6.49,12.02-6.49,19.17s2.4,13.92,6.49,19.53c1.48,2.03,3.18,3.9,5.07,5.58,4.54,4.05,10.16,6.98,16.39,8.25,2.27.47,4.62.72,7.03.72,19.32,0,34.98-15.84,34.98-34.08s-15.42-32.8-34.53-33.02ZM152.78,28.94c5.71,1.53,9.91,6.75,9.91,12.94,0,3.72-1.52,7.09-3.96,9.53-2.31,2.31-5.44,3.79-8.92,3.94-.2.02-.4.02-.61.02h-11.44s-.02-.02-.02-.03v-26.55c.11-.1.23-.21.35-.31h11.2c.7,0,1.39.05,2.06.16.49.07.96.17,1.43.3Z"/><path class="n1" d="M154.81,10.95l-.67,5.91-.34,3.02-1.02,9.06c-.47-.13-.94-.23-1.43-.3-.67-.11-1.36-.16-2.06-.16h-11.2c-.12.1-.24.21-.35.31v26.55s.01.03.02.03h11.44c.21,0,.41,0,.61-.02l-1.24,10.98-.31,2.75-.93,8.25v22.46h-30.52V11.24l36.25-.28h1.75Z"/><path class="n1" d="M234.26,13.68h-22.3l-34.25,86.11h29.59l1.62-8.42h27.16l2.64,8.42h29.99L234.26,13.68ZM211.31,74.91l5.52-13.84,5.52-13.83,5.53,13.83,5.52,13.84h-22.09Z"/><path class="n3" d="M224.05,20.92h-4.37l-26.22,71.74h3.64l2.5-6.87,45.56.13,2.56,6.74h3.66l-27.33-71.74ZM200.83,82.42l21.02-57.78,22.02,57.9-43.04-.12Z"/><path class="n1" d="M343.03,25.44c-6.33-6.38-14.53-10.84-23.54-12.83-9.02-1.98-18.46-1.4-27.12,1.68-8.67,3.08-16.17,8.52-21.56,15.63-5.39,7.11-8.43,15.57-8.73,24.3-.3,8.74,2.15,17.37,7.04,24.79,4.89,7.42,12.01,13.31,20.44,16.92,8.44,3.61,17.82,4.77,26.95,3.34,9.14-1.43,17.62-5.38,24.38-11.36l-17.45-17.59c-3.07,2.72-6.93,4.52-11.09,5.17-4.16.65-8.42.12-12.26-1.52-3.84-1.64-7.07-4.32-9.3-7.7-2.22-3.38-3.34-7.3-3.2-11.28.14-3.97,1.52-7.82,3.97-11.05s5.87-5.71,9.81-7.11c3.94-1.4,8.23-1.67,12.34-.77,4.1.9,7.83,2.93,10.71,5.83l18.63-16.48Z"/><path class="n3" d="M270.85,53.56c1.12-22.16,17.18-35.45,40.43-34.27,10.52.53,18.34,4.98,22.83,9.48l-2.88,2.2c-4.76-4.72-11.52-8.06-20.1-8.49-21.03-1.06-34.54,11.08-35.56,31.31s11.18,34.1,31.66,35.13c9.69.49,17.03-2.13,24.25-7.75l2.66,2.27c-7.23,5.83-15.45,9.26-27.35,8.66-22.41-1.13-37.04-16.39-35.93-38.55Z"/><path class="n3" d="M154.14,16.86c-.14-.01-.29-.01-.43-.01h-27.8s-.04,0-.04.02v79.75h4.85v-27.54h22.85c12.93,0,23.41-10.49,23.41-23.43v-5.53c0-12.72-10.19-23.04-22.84-23.26ZM166.62,59.45c-4.23,4.25-10.09,6.88-16.56,6.88h-19.88s-.04-.02-.04-.04V19.64s.02-.04.04-.04h20.04c1.22,0,2.41.09,3.58.28,11.15,1.71,19.7,11.37,19.7,23.01,0,6.46-2.63,12.33-6.88,16.56Z"/></g></svg>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#about-services">About and Services</a></li>
+    <li><a href="index.html#insights">Insights</a></li>
+    <li><a href="index.html#careers">Careers</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+    <li><a href="contact.html" class="nav-cta">Book a Consultation</a></li>
+  </ul>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">
+      <i data-lucide="bar-chart-3" style="width:12px;height:12px;"></i>
+      Business Consulting
+    </div>
+    <h1>Strategic Solutions<br>for <span>Accelerated</span><br>Growth</h1>
+    <p>PAC Business Consulting partners with organizations to sharpen strategy, optimize operations, and unlock growth  from market intelligence and financial planning to risk governance and investment readiness.</p>
+    <div class="hero-btns">
+      <a href="#services" class="btn-primary">Explore Services</a>
+      <a href="index.html#consultation" class="btn-ghost">Talk to an Expert →</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="metric-stack">
+      <div style="font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(0,0,0,0.3);margin-bottom:4px;">Business Practice Areas</div>
+      <div class="metric-card">
+        <div class="metric-icon"><i data-lucide="target"></i></div>
+       <a href="#strategy"></a>
+        <div class="metric-info"><h4>Strategy and  Growth Planning</h4><p>Multi-year roadmaps with clear KPIs</p></div>
+        <span class="metric-badge">Foundation</span>
+      </div>
+      <div class="metric-card">
+        <div class="metric-icon"><i data-lucide="settings-2"></i></div>
+        <div class="metric-info"><h4>Operations and  Process Excellence</h4><p>Lean management and workflow redesign</p></div>
+        <span class="metric-badge">Efficiency</span>
+      </div>
+      <div class="metric-card">
+        <div class="metric-icon"><i data-lucide="trending-up"></i></div>
+        <div class="metric-info"><h4>Financial Advisory and  Planning</h4><p>Budgeting, forecasting, scenario planning</p></div>
+        <span class="metric-badge">Stability</span>
+      </div>
+      <div class="metric-card">
+        <div class="metric-icon"><i data-lucide="search"></i></div>
+        <div class="metric-info"><h4>Market Research and  Intelligence</h4><p>Competitive insights and feasibility studies</p></div>
+        <span class="metric-badge">Intelligence</span>
+      </div>
+      <div class="metric-card">
+        <div class="metric-icon"><i data-lucide="rocket"></i></div>
+        <div class="metric-info"><h4>Investment Readiness</h4><p>Investor pitches, valuation, deal structuring</p></div>
+        <span class="metric-badge">Growth</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ VALUE STRIP ═══ -->
+<div class="value-strip">
+  <div class="value-item">
+    <div class="value-num">01</div>
+    <div class="value-label">Diagnose</div>
+    <div class="value-desc">Audit your strategy, operations, and financial health</div>
+  </div>
+  <div class="value-item">
+    <div class="value-num">02</div>
+    <div class="value-label">Design</div>
+    <div class="value-desc">Build roadmaps aligned to your growth ambitions</div>
+  </div>
+  <div class="value-item">
+    <div class="value-num">03</div>
+    <div class="value-label">Develop</div>
+    <div class="value-desc">Strengthen systems, processes, and capabilities</div>
+  </div>
+  <div class="value-item">
+    <div class="value-num">04</div>
+    <div class="value-label">Deploy</div>
+    <div class="value-desc">Execute with precision and measure real impact</div>
+  </div>
+</div>
+
+<!-- ═══ SPLIT: CHALLENGE / OUTCOME ═══ -->
+<section class="split-section">
+  <div class="split-left">
+    <div class="split-eyebrow">What Businesses Need</div>
+    <h2>The Challenges Organizations Face</h2>
+    <ul>
+      <li><i data-lucide="chevron-right"></i> Clear strategic direction and long-term growth roadmaps</li>
+      <li><i data-lucide="chevron-right"></i> Optimized operations that reduce waste and increase profit</li>
+      <li><i data-lucide="chevron-right"></i> Access to capital and investment readiness support</li>
+      <li><i data-lucide="chevron-right"></i> Expert guidance on risk, governance, and compliance</li>
+      <li><i data-lucide="chevron-right"></i> Reliable market intelligence to make confident decisions</li>
+    </ul>
+    <a href="#services" class="btn-solid-white">See How We Help</a>
+  </div>
+  <div class="split-right">
+    <div class="split-eyebrow">What PAC Delivers</div>
+    <h2>Outcomes That Move Organizations Forward</h2>
+    <ul>
+      <li><i data-lucide="check-circle"></i> Sustainable revenue growth and market expansion</li>
+      <li><i data-lucide="check-circle"></i> Stronger operational efficiency and higher margins</li>
+      <li><i data-lucide="check-circle"></i> Investment readiness with compelling investor propositions</li>
+      <li><i data-lucide="check-circle"></i> Resilient governance frameworks that protect long-term value</li>
+    </ul>
+    <p>A well-structured business strategy combined with rigorous financial and operational oversight is the strongest defense against market volatility and competitive disruption.</p>
+    <a href="contact.html" class="btn-outline-dark">Book a Consultation</a>
+  </div>
+</section>
+
+<!-- ═══ CAROUSEL: 6 SUB-SERVICES ═══ -->
+<section class="carousel-section" id="services">
+  <div class="carousel-header">
+    <div>
+      <div class="section-eyebrow">Our Services</div>
+      <h2 class="section-title">6 Business<br>Practice Areas</h2>
+    </div>
+    <p class="section-sub">Integrated consulting capabilities covering every dimension of business performance from strategy to execution.</p>
+  </div>
+
+  <div class="carousel-container">
+    <div class="carousel-track" id="carouselTrack">
+
+      <!-- Slide 1 -->
+      <div class="carousel-slide">
+        <h3 id="strategy">1. Strategy and Growth Planning</h3>
+        <ul>
+          <li><i data-lucide="check-circle-2"></i> Craft and execute strategic plans aligned with long-term objectives</li>
+          <li><i data-lucide="check-circle-2"></i> Develop robust business models and goal-setting frameworks</li>
+          <li><i data-lucide="check-circle-2"></i> Conduct competitive positioning and market opportunity analysis</li>
+          <li><i data-lucide="check-circle-2"></i> Create multi-year growth roadmaps with clear milestones and KPIs</li>
+          <li><i data-lucide="check-circle-2"></i> Support business model transformation and diversification strategies</li>
+          <li><i data-lucide="check-circle-2"></i> Facilitate strategic decision-making and implementation planning</li>
+        </ul>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="carousel-slide">
+        <h3>2. Operations and Process Excellence</h3>
+        <ul>
+          <li><i data-lucide="check-circle-2"></i> Improve efficiency through lean management and workflow redesign</li>
+          <li><i data-lucide="check-circle-2"></i> Implement process digitization and operational automation solutions</li>
+          <li><i data-lucide="check-circle-2"></i> Conduct comprehensive operational audits and gap analyses</li>
+          <li><i data-lucide="check-circle-2"></i> Streamline operations to reduce waste and enhance productivity</li>
+          <li><i data-lucide="check-circle-2"></i> Design quality management and continuous improvement frameworks</li>
+          <li><i data-lucide="check-circle-2"></i> Optimize service delivery and customer satisfaction processes</li>
+        </ul>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="carousel-slide">
+        <h3>3. Financial Advisory and Planning</h3>
+        <ul>
+          <li><i data-lucide="check-circle-2"></i> Provide expert assistance in budgeting, forecasting, and cost control</li>
+          <li><i data-lucide="check-circle-2"></i> Develop comprehensive financial modeling and scenario planning</li>
+          <li><i data-lucide="check-circle-2"></i> Support financial strategy development and investment analysis</li>
+          <li><i data-lucide="check-circle-2"></i> Create long-term sustainability and profitability planning</li>
+          <li><i data-lucide="check-circle-2"></i> Conduct financial health assessments and ratio analysis</li>
+          <li><i data-lucide="check-circle-2"></i> Implement financial controls and reporting systems</li>
+        </ul>
+      </div>
+
+      <!-- Slide 4 -->
+      <div class="carousel-slide">
+        <h3>4. Market Research and Intelligence</h3>
+        <ul>
+          <li><i data-lucide="check-circle-2"></i> Provide robust market insights through customer surveys and sector analysis</li>
+          <li><i data-lucide="check-circle-2"></i> Conduct competitor benchmarking and competitive intelligence gathering</li>
+          <li><i data-lucide="check-circle-2"></i> Execute comprehensive feasibility studies for new ventures</li>
+          <li><i data-lucide="check-circle-2"></i> Guide market entry strategies and product development decisions</li>
+          <li><i data-lucide="check-circle-2"></i> Support business expansion planning and market penetration strategies</li>
+          <li><i data-lucide="check-circle-2"></i> Deliver actionable insights for strategic business decisions</li>
+        </ul>
+      </div>
+
+      <!-- Slide 5 -->
+      <div class="carousel-slide">
+        <h3>5. Risk Management and Governance</h3>
+        <ul>
+          <li><i data-lucide="check-circle-2"></i> Identify, assess, and mitigate risks through customized frameworks</li>
+          <li><i data-lucide="check-circle-2"></i> Develop business continuity and crisis management strategies</li>
+          <li><i data-lucide="check-circle-2"></i> Create governance structures, board charters, and internal controls</li>
+          <li><i data-lucide="check-circle-2"></i> Implement compliance frameworks upholding integrity and accountability</li>
+          <li><i data-lucide="check-circle-2"></i> Enhance resilience against economic, operational, and environmental risks</li>
+          <li><i data-lucide="check-circle-2"></i> Establish risk monitoring and reporting systems</li>
+        </ul>
+      </div>
+
+      <!-- Slide 6 -->
+      <div class="carousel-slide">
+        <h3>6. Investment Readiness and Business Development</h3>
+        <ul>
+          <li><i data-lucide="check-circle-2"></i> Prepare businesses for investment through comprehensive business plan development</li>
+          <li><i data-lucide="check-circle-2"></i> Create compelling investor pitches and financial projections</li>
+          <li><i data-lucide="check-circle-2"></i> Provide business valuation services and deal structuring support</li>
+          <li><i data-lucide="check-circle-2"></i> Support fundraising strategy development and investor relations</li>
+          <li><i data-lucide="check-circle-2"></i> Facilitate deal negotiation and due diligence processes</li>
+          <li><i data-lucide="check-circle-2"></i> Offer end-to-end business development support using the SBDS framework</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Nav: dots + arrows only -->
+    <div class="carousel-nav">
+      <div class="carousel-dots" id="carouselDots">
+        <button class="dot active" onclick="goToSlide(0)"></button>
+        <button class="dot" onclick="goToSlide(1)"></button>
+        <button class="dot" onclick="goToSlide(2)"></button>
+        <button class="dot" onclick="goToSlide(3)"></button>
+        <button class="dot" onclick="goToSlide(4)"></button>
+        <button class="dot" onclick="goToSlide(5)"></button>
+      </div>
+      <div class="carousel-arrows">
+        <button class="arrow-btn" onclick="prevSlide()" aria-label="Previous slide">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button class="arrow-btn" onclick="nextSlide()" aria-label="Next slide">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ADVANTAGES ═══ -->
+<section class="adv-section">
+  <div class="section-eyebrow">Why PAC Business Consulting</div>
+  <h2 class="section-title" style="margin-bottom:12px;">Built for African<br>Business Realities</h2>
+  <p style="font-size:15px;color:var(--gray);max-width:560px;line-height:1.75;">Our consulting practice is rooted in deep understanding of African markets  combining local insight with global frameworks to deliver strategies that actually work.</p>
+  <div class="adv-grid">
+    <div class="adv-visual">
+      <div class="adv-stat-grid">
+        <div class="adv-stat"><div class="stat-num">6</div><div class="stat-label">Practice Areas</div></div>
+        <div class="adv-stat"><div class="stat-num">360°</div><div class="stat-label">Business Coverage</div></div>
+        <div class="adv-stat"><div class="stat-num">SBDS</div><div class="stat-label">MSME Framework</div></div>
+        <div class="adv-stat"><div class="stat-num">4D</div><div class="stat-label">Methodology</div></div>
+      </div>
+    </div>
+    <div class="adv-content">
+      <h2>What Sets PAC Apart</h2>
+      <p>From early-stage startups to established enterprises, we bring the same rigour  combining strategy, operational, and financial expertise within one integrated practice.</p>
+      <div class="adv-list">
+        <div><i data-lucide="map-pin"></i> Africa-first market understanding</div>
+        <div><i data-lucide="layers"></i> End-to-end integrated practice</div>
+        <div><i data-lucide="target"></i> KPI-driven, measurable outcomes</div>
+        <div><i data-lucide="users"></i> Senior-led advisory teams</div>
+        <div><i data-lucide="zap"></i> Agile and adaptive delivery</div>
+        <div><i data-lucide="briefcase"></i> Cross-sector experience</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ INSIGHTS ═══ -->
+<section class="updates-section">
+  <h2>Business Insights from PAC</h2>
+  <div class="updates-grid">
+    <div class="update-item">
+      <span class="update-tag">Case Study</span>
+      <h4>Scaling a Nairobi MSME from Startup to Investment-Ready</h4>
+      <p>How PAC's Business Consulting team helped a logistics startup restructure operations, attract funding, and expand regionally within 18 months.</p>
+    </div>
+    <div class="update-item">
+      <span class="update-tag">Article</span>
+      <h4>Why Most African SMEs Fail at Strategy Execution</h4>
+      <p>PAC unpacks the five most common gaps between strategic planning and on-the-ground implementation  and how to close them.</p>
+    </div>
+    <div class="update-item">
+      <span class="update-tag">Research</span>
+      <h4>East Africa Business Sentiment Index 2025</h4>
+      <p>PAC's analysis of business confidence, investment appetite, and growth priorities across Kenya, Uganda, and Tanzania.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<section class="cta-section">
+  <div>
+    <h2>Ready to Accelerate<br>Your Business Growth?</h2>
+    <p>Whether you are scaling, restructuring, or entering new markets  a conversation with PAC is the first step toward decisive, confident action.</p>
+  </div>
+  <div><a href="index.html#consultation" class="btn-white">Schedule a Discovery Call</a></div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <span>© 2025 Priority Activator Consulting. All rights reserved.</span>
+  <div class="footer-links">
+    <a href="index.html#about-services">All Services</a>
+    <a href="index.html#insights">Insights</a>
+    <a href="index.html#contact">Contact</a>
+    <a href="contact.html">Book a Consultation</a>
+  </div>
+</footer>
+
+<script>
+  lucide.createIcons();
+
+  let currentSlide = 0;
+  const track = document.getElementById('carouselTrack');
+  const dots = document.querySelectorAll('.dot');
+  const tabs = document.querySelectorAll('.carousel-tab');
+  const totalSlides = 6;
+  let slideInterval;
+
+  function updateCarousel() {
+    track.style.transform = `translateX(-${currentSlide * 100}%)`;
+    dots.forEach((d, i) => d.classList.toggle('active', i === currentSlide));
+    tabs.forEach((t, i) => t.classList.toggle('active', i === currentSlide));
+  }
+
+  function goToSlide(index) {
+    clearInterval(slideInterval);
+    currentSlide = index;
+    updateCarousel();
+    startAutoSlide();
+  }
+
+  function nextSlide() {
+    goToSlide((currentSlide + 1) % totalSlides);
+  }
+
+  function prevSlide() {
+    goToSlide((currentSlide - 1 + totalSlides) % totalSlides);
+  }
+
+  function startAutoSlide() {
+    slideInterval = setInterval(nextSlide, 10300);
+  }
+
+  startAutoSlide();
+
+  // Nav scroll shadow
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => {
+    if (nav) nav.style.boxShadow = window.scrollY > 20 ? '0 4px 30px rgba(0,0,0,0.08)' : '';
+  });
+</script>
+</body>
+</html>
